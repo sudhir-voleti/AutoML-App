@@ -1,14 +1,12 @@
 #### Overview & Example Datasets
 
-In [statistics](https://en.wikipedia.org/wiki/Statistics), the ***k\*-nearest neighbors algorithm** (***k\*-NN**) is a [non-parametric](https://en.wikipedia.org/wiki/Non-parametric_statistics) [classification](https://en.wikipedia.org/wiki/Classification) method. It is used for [classification](https://en.wikipedia.org/wiki/Statistical_classification) and [regression](https://en.wikipedia.org/wiki/Regression_analysis). In both cases, the input consists of the *k* closest training examples in [data set](https://en.wikipedia.org/wiki/Data_set). The output depends on whether *k*-NN is used for classification or regression:
+**Automated machine learning** (**AutoML**) is the process of [automating](https://en.wikipedia.org/wiki/Automation) the tasks of applying [machine learning](https://en.wikipedia.org/wiki/Machine_learning) to real-world problems. AutoML covers the complete pipeline from the raw dataset to the deployable machine learning model. AutoML was proposed as an [artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)-based solution to the ever-growing challenge of applying machine learning.[[1\]](https://en.wikipedia.org/wiki/Automated_machine_learning#cite_note-autoweka1-1)[[2\]](https://en.wikipedia.org/wiki/Automated_machine_learning#cite_note-AutoML2014ICML-2)
 
-- In k-NN classification, the output is a class membership. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class most common among its k nearest neighbors (k is a positive integer, typically small). If k = 1, then the object is simply assigned to the class of that single nearest neighbor.
-
-- In k-NN regression, the output is the property value for the object. This value is the average of the values of k nearest neighbors. 
-
-*Source:*  [Wikipedia](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
+-[Wikipedia](https://en.wikipedia.org/wiki/Automated_machine_learning)
 
 
+
+In this App we are using H20 auto ml library to automate the machine learning tasks.
 
 
 
@@ -17,14 +15,14 @@ In [statistics](https://en.wikipedia.org/wiki/Statistics), the ***k\*-nearest ne
 #### How to use this App
 
 1. Upload training data from sidebar panel
-2. Go to kNN Results tab and select Y and X variables from sidebar panel and then select task at hand i.e. classification or regression
-3. Select percentage of data required for training model
-4. Tune kNN parameter
+2. Go to Data Summary tab and select Y and X variables from sidebar panel and then select task at hand i.e. classification or regression
+3. Select percentage of data required for training the model
+4. Select Maximum Training Time for each model (in secs)
 5. Click on Train model 
 
 
 
-Once your model is trained, You may find training results & corresponding plots in RF Results, RF Plots and Variable Importance Tabs.
+Once your model is trained, You may find all the candidate models and best model in Result Leaderboard tab. For detailed training  of each model you may refer to Best Model tab.
 
 ------
 

@@ -131,13 +131,13 @@ server <- function(input, output,session) {
   })
   
   
-  output$pca_plot <- renderPlot({
-    y <- tr_data()[,input$sel_y]
-    X <- tr_data()[,input$sel_x]
-    X <- select_if(X,is.numeric)
-    pca_plot(y,X)
-  })
-  
+  # output$pca_plot <- renderPlot({
+  #   y <- tr_data()[,input$sel_y]
+  #   X <- tr_data()[,input$sel_x]
+  #   X <- select_if(X,is.numeric)
+  #   pca_plot(y,X)
+  # })
+  # 
 
 #--- Tab-2 leader board ------#
   output$h2o_flow <- renderUI({
