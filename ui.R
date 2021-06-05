@@ -24,7 +24,7 @@ shinyUI(fluidPage(
                                      value = 0.7,
                                      step = 0.05),
                          sliderInput("max_tr_time",
-                                     label = "Maximum Training Time",
+                                     label = "Maximum Training Time (in Secs)",
                                      min = 10,
                                      max = 100,
                                      value = 30,
