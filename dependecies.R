@@ -6,4 +6,6 @@ suppressPackageStartupMessages({
   if (!require('h2o')){install.packages('h2o')}; library(h2o)
   if (!require('DT')){install.packages('DT')};library(DT)
   if (!require('markdown')){install.packages('markdown')};library(markdown)
+  if (!require('Amelia')){install.packages('Amelia')};library(Amelia)
+  
 })
