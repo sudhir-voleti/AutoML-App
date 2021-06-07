@@ -181,11 +181,19 @@ server <- function(input, output,session) {
     lb <- model()@leaderboard; lb
     lb_df = as.data.frame(lb)
     if (input$task == 'clf'){
-      plot1 = ggplot(data=lb_df, aes(seq(1:nrow(lb_df)), auc)) + 
-        geom_line(colour = 'red') + 
-        geom_point(colour = "blue") + 
-        xlab("model number in leaderboard")
-    } else {
+      if (length(unique(tr_data()[,input$sel_y])) > 2){
+        plot1 = ggplot(data=lb_df, aes(seq(1:nrow(lb_df)), mean_per_class_error)) + 
+          geom_line(colour = 'red') + 
+          geom_point(colour = "blue") + 
+          xlab("model number in leaderboard")
+      }else{
+        plot1 = ggplot(data=lb_df, aes(seq(1:nrow(lb_df)), auc)) + 
+          geom_line(colour = 'red') + 
+          geom_point(colour = "blue") + 
+          xlab("model number in leaderboard")
+      }
+     
+    }else {
       plot1 = ggplot(data=lb_df, aes(seq(1:nrow(lb_df)), rmse)) + 
         geom_line(colour = 'red') + 
         geom_point(colour = "blue") + 

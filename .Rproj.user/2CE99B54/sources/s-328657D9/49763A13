@@ -3,7 +3,7 @@
     "path": "D:/R Projects/AutoML App/ui.R",
     "project_path": "ui.R",
     "type": "r_source",
-    "hash": "1341246648",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1622519910435.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "33,8",
-        "scrollLine": "20"
+        "cursorPosition": "63,44",
+        "scrollLine": "53"
     },
     "folds": "",
     "lastKnownWriteTime": 1622892973,
