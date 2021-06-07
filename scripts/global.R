@@ -27,7 +27,7 @@ h2o_automl <- function(df0, classifn = 'clf',
   system.time({
     aml <- h2o.automl(x = x, y = y,
                       training_frame = train_h2o,
-                      max_runtime_secs = max_runtime_secs_ui) # from UI.
+                      max_runtime_secs = max_runtime_secs_ui,seed = 222) # from UI.
   }) # 46 s
   
   return(aml)
