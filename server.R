@@ -226,6 +226,30 @@ server <- function(input, output,session) {
   })
   
   #----Best Model output tab ------#
+  
+  output$ith_model_dwnld <- renderUI({
+    req(model())
+    lb <- model()@leaderboard
+    lb_df = as.data.frame(lb)
+    max_i <- dim(lb_df)[1]
+    numericInput("ith_dwnld", "Select i^th model from the leaderboard to download", value = 1, min = 1, max = max_i)
+  })
+  
+  output$dwnld_model <- downloadHandler(
+    filename = function() {
+      paste0(model()@leaderboard$model_id[input$ith_dwnld,1][1])
+    },
+    content = function(file) {
+      lb <-model()@leaderboard
+      i <- as.numeric(input$ith_dwnld)
+      m_id = h2o.getModel(as.vector(lb$model_id[i]))
+      h2o.saveModel(m_id, path = "./download_model",force=T)
+      f_name <- paste0(model()@leaderboard$model_id[i,1][1])
+      serverfile <- paste0("./download_model",'/',f_name)
+      file.copy(serverfile, file,overwrite = T)
+      
+    }
+  )
 output$top_model <- renderPrint({
   best_model = model()@leader
   cat("==== +++++++ Auto-ML recommended top model is: +++++++ ====\n\n")
@@ -270,6 +294,43 @@ output$ith_model_op <- renderPrint({
     filename = function() { "predictions.csv" },
     content = function(file) {
       write.csv(out_pred_df(), file,row.names=FALSE)
+    }
+  )
+  
+  #------Load and Predict-------#
+  
+  data_to_pr <- reactive({
+    req(input$pr_data$datapath)
+    df <- read.csv(input$pr_data$datapath,stringsAsFactors = TRUE)
+    return(df)
+    
+  })
+  
+  output$up_data <- DT::renderDataTable({
+      head(data_to_pr())
+  })
+  
+  predicted_data <- reactive({
+    req(input$tr_model$datapath)
+    saved_model <- h2o.loadModel(input$tr_model$datapath)
+    h2o_df <- as.h2o(data_to_pr())
+    pred_out = h2o.predict(saved_model, h2o_df)
+    pred_out <- as.data.frame(pred_out)
+    pred_out <-  pred_out %>% mutate(across(where(is.numeric), round, 3))
+    pred_out1 <- cbind(pred_out,data_to_pr())
+    return(pred_out)
+})
+  
+  output$predicted_data <- DT::renderDataTable({
+    head(predicted_data())
+  })
+  
+  
+  
+  output$download_pred1 <- downloadHandler(
+    filename = function() { "predictions.csv" },
+    content = function(file) {
+      write.csv(predicted_data(), file,row.names=FALSE)
     }
   )
   # 

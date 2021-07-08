@@ -31,6 +31,12 @@ shinyUI(fluidPage(
                                      step = 5),
                          actionButton("apply","Train model")
         ),
+        conditionalPanel(
+            condition="input.tabselected==4",
+            fileInput("pr_data","Upload Dataset for Prediction",placeholder = "No File Selected"),
+            fileInput("tr_model","Upload Trained Model",placeholder = "No File Selected")
+            #actionButton("pred_btn","Predict")
+        ),
         
         
     ),
@@ -67,6 +73,10 @@ shinyUI(fluidPage(
             ),
             tabPanel("Best Model",value=3,
                      h4('Top Model recommended by Auto-ML'),
+                     hr(),
+                     uiOutput('ith_model_dwnld'),
+                     downloadButton("dwnld_model",label = "Download Trained Model"),
+                     hr(),
                      verbatimTextOutput("top_model"),
                      #h4("i^th model from leaderboard"),
                      uiOutput("ith_model"),
@@ -79,6 +89,14 @@ shinyUI(fluidPage(
                      downloadButton("download_pred")
                      
             ),
+            tabPanel("Load & Predict",value=4,
+                     helpText("Note: Please upload data with same features in training dataset"),
+                     DT::dataTableOutput("up_data"),
+                     hr(),
+                     DT::dataTableOutput("predicted_data"),
+                     hr(),
+                     downloadButton("download_pred1")
+                     ),
             id = "tabselected"
         )
     )
